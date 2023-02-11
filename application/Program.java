@@ -1,6 +1,7 @@
 package application;
 
 import entities.Employee;
+import services.BrazilTaxService;
 import services.PensionService;
 import services.SalaryService;
 import services.TaxService;
@@ -27,9 +28,16 @@ public class Program {
         // pensao 8%
         // imposto 15%
 
+        // Brazil imposto de 12%
+        TaxService brazilTaxService = new BrazilTaxService();
+        SalaryService brazilainsalaryService = new SalaryService(brazilTaxService,pensionService);
+
         double netSalary = salaryService.netSalary(employee01);
         System.out.println("Salário líquido: " + String.format("r$ %.2f",netSalary));
 
+        // tem que ser salário maior, visto que desconto do imposto é 3% menor
+        double brazilianNetSalary = brazilainsalaryService.netSalary(employee01);
+        System.out.println("Salário líquido: " + String.format("r$ %.2f",brazilianNetSalary));
 
         input.close();
     }
