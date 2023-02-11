@@ -2,6 +2,7 @@ package application;
 
 import entities.Employee;
 import services.PensionService;
+import services.SalaryService;
 import services.TaxService;
 
 import java.util.Locale;
@@ -15,20 +16,19 @@ public class Program {
 
         PensionService pensionService = new PensionService();
         TaxService taxService = new TaxService();
-        Employee employee01 = new Employee();
+        Employee employee01 = new Employee("",10000);
+        SalaryService salaryService = new SalaryService();
+
         employee01.setName("Rafael de Luca");
 
         System.out.println(pensionService.pensionDiscount(10000));
         System.out.println(taxService.tax(10000));
-        System.out.println(employee01);
 
+        // pensao 8%
+        // imposto 15% 
 
-
-
-
-
-
-
+        double netSalary = salaryService.netSalary(employee01);
+        System.out.println("Salário líquido: " + String.format("r$ %.2f",netSalary));
 
 
         input.close();
