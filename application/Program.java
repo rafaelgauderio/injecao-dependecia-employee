@@ -17,7 +17,7 @@ public class Program {
         PensionService pensionService = new PensionService();
         TaxService taxService = new TaxService();
         Employee employee01 = new Employee("",10000);
-        SalaryService salaryService = new SalaryService();
+        SalaryService salaryService = new SalaryService(taxService,pensionService);
 
         employee01.setName("Rafael de Luca");
 
@@ -25,7 +25,7 @@ public class Program {
         System.out.println(taxService.tax(10000));
 
         // pensao 8%
-        // imposto 15% 
+        // imposto 15%
 
         double netSalary = salaryService.netSalary(employee01);
         System.out.println("Salário líquido: " + String.format("r$ %.2f",netSalary));
